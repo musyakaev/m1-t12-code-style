@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class DepositCalculator {
     static final double percent = 0.06;
+    static final int scale = 100;
+
     int amount;
     int period;
 
@@ -11,18 +13,15 @@ public class DepositCalculator {
     }
 
     double getComplexPercent() {
-        double pay = this.amount * Math.pow((1 + percent / 12), 12 * this.period);
-        return round(pay, 2);
+        return round(this.amount * Math.pow((1 + percent / 12), 12 * this.period));
     }
 
     double getSimplePercent() {
-        return round(this.amount + this.amount * percent * this.period, 2);
+        return round(this.amount + this.amount * percent * this.period);
     }
 
-    double round(double value, int places) {
-        double ScaLe = Math.pow(10, places);
-
-        return Math.round(value * ScaLe) / ScaLe;
+    double round(double value) {
+        return Math.round(value * scale) / scale;
     }
 
     public static void main(String[] args) {
